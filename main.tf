@@ -15,9 +15,12 @@ data "aws_ami" "ami" {
 
 resource "aws_instance" "ansible_server" {
   ami           = data.aws_ami.ami.id
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
 
   tags = {
-	Name = "ansible_server"
+	Name = "ansible_server_2"
+  }
+  lifecycle {
+    create_before_destroy = true
   }
 }
